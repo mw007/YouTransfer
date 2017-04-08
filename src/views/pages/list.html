@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="hp jumbotron" id="hp">
+	{% include "title.html" %}
+	
+	{% if security.accessRights == 'restricted' and not user %}
+
+		{% include "login.html" %}
+
+	{% else %}
+
+        {% for bundle in bundles %}
+
+            <div class="table table-striped dz-preview-template files">
+                {% if bundle %}
+                    <div class="dz-preview-bundle"><span class="glyphicon glyphicon-download-alt"></span> <a href="/bundle/{{ bundle.id }}/">Download all files as a zip archive</a></div>
+                    {% for file in bundle.files %}
+                        <div class="dz-preview-item">
+                            <div class="dz-preview-description col-md-7">
+                                <div class="dz-preview-result">
+                                    <span class="text-success" data-dz-link>
+                                        <a href="/download/{{ file.id }}/"><span class="glyphicon glyphicon-download-alt"></span> {{ file.name }}</a>
+                                    </span>
+                                    <span class="text-danger" data-dz-errormessage></span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+</div>
+{% endblock %}

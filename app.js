@@ -56,6 +56,7 @@ app.post('/upload/bundle', router.uploadBundle());
 app.post(/^\/send/, router.send());
 app.get('/download/:token', router.download());
 app.post('/download', router.download());
+app.get('/list', router.list());
 app.get('/bundle/:token', router.download());
 app.get('/settings', router.settingsRedirect());
 app.post('/settings/finalise', router.settingsFinalise());
